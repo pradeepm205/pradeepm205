@@ -1,52 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrimeNumber
+namespace ArrayToCsv
 {
-   
-        class sumOfPrimes
+    class Program
+    {
+
+
+        static void Main(string[] args)
         {
-            static bool isPrimeNumber(int n)
+            string[,] files = new string[2, 5];
+            files[0, 0] = "Hii";
+            files[0, 1] = "this";
+            files[0, 2] = "Pradeep";
+            files[0, 3] = "Softwaredeveloper";
+            files[0, 4] = "RIT";
+
+            files[1, 0] = "King";
+            files[1, 1] = "43";
+            files[1, 2] = "76";
+            files[1, 3] = "bangalore";
+            files[1, 4] = "6533108";
+
+            StreamWriter sw = File.CreateText("OutputText.csv");
+            for (int i = 0; i < 2; i++)
+
             {
-                if (n == 1)
+                for (int j = 0; j < 5; j++)
                 {
-                    return false;
+                    sw.Write(files[i, j] + ";");
+
                 }
-                for (int i = 2; i * i <= n; i++)
-                {
-                    if (n % i == 0)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            public static int SumOfPrimes()
-            {
-                Console.WriteLine("Enter the from number: ");
-                int from = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter the to number: ");
-                int to = Convert.ToInt32(Console.ReadLine());
-                int sum = 0;
-                for (int i = from; i <= to; i++)
-                {
-                    bool isPrime = isPrimeNumber(i);
-                    if (isPrime)
-                    {
-                        sum = sum + i;
-                    }
-                }
-                return sum;
+
+                sw.Write("\n");
 
             }
-            static void Main(string[] args)
-            {
-                Console.WriteLine("Sum of Prime Numbers: " + SumOfPrimes());
-            }
+
+            sw.Flush();
+            sw.Close();
+            Console.WriteLine("success");
+
+
+
+
+
+
+
         }
-
     }
-
+}
